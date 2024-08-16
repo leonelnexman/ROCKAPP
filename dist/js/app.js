@@ -1,47 +1,51 @@
-document.querySelectorAll('.faq__item-top').forEach(itemTop => {
-    itemTop.addEventListener('click', function() {
-        const faqItem = this.parentElement;
-        const faqContent = faqItem.querySelector('.faq__item-content');
+let splash_1 = document.getElementById('splash_1');
+let gold_splash_1 = document.getElementById('gold_splash_1');
 
-        const maxHeight = faqContent.scrollHeight + 'px';
-
-        if (faqItem.classList.contains('visible')) {
-            faqContent.style.maxHeight = null;
-            faqItem.classList.remove('visible');
-        } else {
-            faqContent.style.maxHeight = maxHeight;
-            faqItem.classList.add('visible');
-        }
-    });
+window.addEventListener('scroll', () => {
+    let value = window.scrollY;
+    splash_1.style.left = value * -0.5 + 'px';
+    gold_splash_1.style.right = value * -0.5 + 'px';
+    // text.style.marginTop = value * -0.5 + 'px';
 });
 
-var swiper = new Swiper(".swiper-container", {
-	slidesPerView: 1,
-	loop: true,
-	effect: "coverflow",
-	grabCursor: true,
-	centeredSlides: true,
-	spaceBetween: -0,
-	coverflowEffect: {
-		rotate: 0,
-		stretch: 0,
-		depth: 0,
-		modifier: 1,
-		slideShadows: false
-	},
-	navigation: {
-		nextEl: ".swiper-button-next",
-		prevEl: ".swiper-button-prev"
-	},
-	breakpoints: {
-        300: {
-            effect: "none",
-            spaceBetween: 10,
-			slidesPerView: "auto",
-        },
-        962: {
-            effect: "coverflow",
-			slidesPerView: 1,
-        },
-    }
+document.querySelector('.hamburger').addEventListener('click', function() {
+    const navLinks = document.querySelector('.footer .nav-links');
+    const body = document.body;
+
+    // Переключение класса 'visible' у nav-links
+    navLinks.classList.toggle('visible');
+
+    // Переключение класса 'overflow-hidden' у body
+    body.classList.toggle('overflow-hidden');
 });
+
+
+var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    loop: true,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    scrollbar: {
+        el: '.swiper-scrollbar',
+        hide: true,
+    },
+});
+
+var swiper1 = new Swiper('.cases__slider', {
+    slidesPerView: "auto",
+    spaceBetween: -150,
+    loop: true,
+    centeredSlides: true,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+});
+
